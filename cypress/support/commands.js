@@ -34,6 +34,8 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit', mandatoryFields => {
     cy.get('[id=phone]').as('phone').type('987654321', {delay: 0});
     cy.get('[id="open-text-area"]').as('howCanWeHelpYou').should('be.enabled');
     cy.get('@howCanWeHelpYou').type(mandatoryFields.howCanIHelpYou, { delay: 0});
+    cy.clock();
     cy.contains('button', 'Enviar').as('send').should('be.enabled');
     cy.get('@send').click();
+    cy.tick(3000);
 })
